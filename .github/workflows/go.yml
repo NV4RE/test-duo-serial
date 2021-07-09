@@ -23,7 +23,11 @@ jobs:
       run: |
         export PATH=$PATH:$(go env GOPATH)/bin
         go env GOPATH
+        echo "ls"
+        ls
+        echo "ls $(go env GOPATH)"
         ls $(go env GOPATH)
+        echo "ls $(go env GOPATH)/bin"
         ls $(go env GOPATH)/bin
         go get -v
         gox -arch="amd64 386 armv5 armv6 armv7" -os="windows linux" -output="build/{{.Dir}}_{{.OS}}_{{.Arch}}"
