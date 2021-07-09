@@ -22,15 +22,9 @@ jobs:
     - name: Build all
       run: |
         export PATH=$PATH:$(go env GOPATH)/bin
-        go get -v
-        go env GOPATH
-        echo "ls"
-        ls
-        echo "ls $(go env GOPATH)"
-        ls $(go env GOPATH)
-        echo "ls $(go env GOPATH)/bin"
-        ls $(go env GOPATH)/bin
-        $(go env GOPATH)/bin/gox -arch="amd64 386 armv5 armv6 armv7" -os="windows linux" -output="build/{{.Dir}}_{{.OS}}_{{.Arch}}"
+        go get github.com/mitchellh/gox@v1.0.1
+
+        gox -arch="amd64 386 armv5 armv6 armv7" -os="windows linux" -output="build/{{.Dir}}_{{.OS}}_{{.Arch}}"
 
     - name: Upload binaries to release
       uses: svenstaro/upload-release-action@v2
